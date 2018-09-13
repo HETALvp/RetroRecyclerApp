@@ -1,0 +1,12 @@
+public class Main2Activity extends AppCompatActivity {
+
+    ListView LVS;
+    int ID=0;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main2);
+        int ID=getIntent().getIntExtra("id",12);
+        LVS= (ListView) findViewById(R.id.LVS);
+

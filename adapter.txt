@@ -1,0 +1,55 @@
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    ArrayList<String> data;
+    ArrayList<Integer> data_id;
+
+
+    public RecyclerViewAdapter(ArrayList<String> data, ArrayList<Integer> data_id) {
+        this.data = data;
+        this.data_id = data_id;
+    }
+
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new ItemHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_layout, parent, false));
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int i) {
+
+        ItemHolder itemHolder = (ItemHolder) holder;
+        itemHolder.tvItem.setText(data.get(i).toString());
+    }
+
+    @Override
+    public int getItemCount() {
+        return data.size();
+    }
+
+    public class ItemHolder extends RecyclerView.ViewHolder {
+        TextView tvItem;
+
+
+        public ItemHolder(View view) {
+            super(view);
+            tvItem = (TextView) view.findViewById(R.id.tvItem);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // get position
+                    int pos = getAdapterPosition();
+                    int CT1 = data_id.get(pos);
+                    Context con=v.getContext();
+
+                    Intent intent=new Intent(con,Main2Activity.class);
+                    intent.putExtra("id",CT1);
+                    con.startActivity(intent);
+
+                }
+
+            });
+
+
+        }
+    }
